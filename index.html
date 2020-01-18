@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://apis.mapmyindia.com/advancedmaps/v1/ju6t4c6lqmbtvfd9vyndjeet6xz6dr3w/map_load?v=1.3"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/BrowserFS/2.0.0/browserfs.min.js" integrity="sha256-9vfol9kbQ9KEqShl+2ejcpsESl8uQAI2K81vm1EVkRo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.1/axios.min.js" integrity="sha256-Hhwv1ElzvrH6ZuiIDWEO6xBYW3lmFYrapwcjgXhpL6g=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="./main.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Find your Bus</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        // Installs globals onto window:
+        // * Buffer
+        // * require (monkey-patches if already defined)
+        // * process
+        // You can pass in an arbitrary object if you do not wish to pollute
+        // the global namespace.
+        BrowserFS.install(window);
+        // Configures BrowserFS to use the LocalStorage file system.
+        BrowserFS.configure({
+            fs: "LocalStorage"
+        }, function(e) {
+            if (e) {
+                // An error happened!
+                throw e;
+            }
+            // Otherwise, BrowserFS is ready-to-use!
+        });
+    </script>
+    <div id="map"></div>
+    <div class="open-btn">
+        <button class="open-button" onclick="showBuses()">
+      <strong>Find Buses</strong>
+    </button>
+    </div>
+    <div id="loginPopup">
+        <div class="form-popup" id="popupForm">
+            <form action="/ticket.html" class="form-container" method="GET">
+                <h2>Book Now</h2>
+                <label for="seats">
+          <strong>No of Seats</strong>
+        </label>
+                <input type="text" id="seats" placeholder="No. of Seats" name="seats" required>
+                <label for="source">
+          <strong>Source</strong>
+        </label>
+                <div class="custom-select">
+                    <select name="source">
+            <option value="0">Select Stop:</option>
+            <option value="Kharagpur">Kharagpur</option>
+            <option value="Howrah">Howrah</option>
+          </select>
+                </div>
+                <label for="destination">
+          <strong>Destination</strong>
+        </label>
+                <div class="custom-select">
+                    <select name="destination">
+            <option value= "0">Select Stop:</option>
+            <option value="Howrah">Howrah</option>
+            <option value="Kharagpur">Kharagpur</option>
+          </select>
+                </div>
+                <label for="busid">
+                <button type="submit " class="btn ">Book Now</button>
+                <button type="button " class="btn cancel " onclick="closeForm() ">Close</button>
+            </form>
+        </div>
+    </div>
+    <script src="./main.js "></script>
+</body>
+
+</html>

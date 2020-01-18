@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./main.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tickets</title>
+</head>
+
+<body>
+    <div class="ticket-data">
+        <h1>Congratulations! Ticket is Booked</h1>
+        <div id="seats"></div>
+        <div id="path"></div>
+    </div>
+    <div id="qrcode"></div>
+    <script>
+        var data = window.location.href.split("?")[1]
+        var datasplit = data.split("&");
+        var seats = datasplit[0].split("=")[1];
+        var source = datasplit[1].split("=")[1];
+        var destination = datasplit[2].split("=")[1];
+        var seathtml = document.getElementById("seats");
+        seathtml.innerHTML = "<h3>Seats : " + seats + "</h3>"
+        var pathhtml = document.getElementById("path");
+        pathhtml.innerHTML = "<h3>" + source + " to " + destination + "</h3>"
+        console.log(seats, source, destination)
+        var url = "https://api.qrserver.com/v1/create-qr-code/?data=" + source + "to" + destination + "seats" + seats.toString() + "&amp;size=300x300"
+        var qrhtml = document.getElementById("qrcode");
+        qrhtml.innerHTML = "<img src=" + url + 'alt="" title="" />'
+    </script>
+</body>
+
+</html>
